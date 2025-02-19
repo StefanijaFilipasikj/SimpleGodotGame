@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8dmm6bdyc8r2"]
+
+[ext_resource type="Script" path="res://treasure_chest.gd" id="1_72t2a"]
+[ext_resource type="PackedScene" uid="uid://cxe05yq3ws4ds" path="res://Assets/Models/tresure_chest_-_game_art_asset_practice.glb" id="1_p5fet"]
+[ext_resource type="PackedScene" uid="uid://cheft4i3spca" path="res://Assets/Models/coin.glb" id="3_bijwe"]
+[ext_resource type="AudioStream" uid="uid://bnmsr6ax13n3u" path="res://Assets/Music/treasure.mp3" id="4_nrnkc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wdnf6"]
+size = Vector3(1.56421, 0.963518, 1.62659)
+
+[node name="TressureChest" type="Area3D"]
+script = ExtResource("1_72t2a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00354134, 0.016937, 0.03302)
+shape = SubResource("BoxShape3D_wdnf6")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_p5fet")]
+transform = Transform3D(0.998614, 0, 0, 0, 0.998614, 0, 0, 0, 0.998614, 0, -0.5, 0)
+
+[node name="Coin1" parent="." instance=ExtResource("3_bijwe")]
+transform = Transform3D(0.455172, 0, 0.206926, 0, 0.5, 0, -0.206926, 0, 0.455172, 0.422663, -0.0603806, 0.872383)
+
+[node name="Coin2" parent="." instance=ExtResource("3_bijwe")]
+transform = Transform3D(0.363737, 0, -0.343068, 0, 0.5, 0, 0.343068, 0, 0.363737, -0.407269, 0.24795, -0.0253341)
+
+[node name="Coin3" parent="." instance=ExtResource("3_bijwe")]
+transform = Transform3D(0.445658, 0, -0.226692, 0, 0.5, 0, 0.226692, 0, 0.445658, -0.677977, -0.538014, 0.949521)
+
+[node name="TreasureChestPickup" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_nrnkc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

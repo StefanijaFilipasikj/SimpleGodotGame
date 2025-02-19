@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d28meylfymytk"]
+
+[ext_resource type="PackedScene" uid="uid://ccg1vhm2f0bi" path="res://Assets/Models/street_lamp.glb" id="1_inun6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_siqar"]
+height = 6.0
+
+[node name="StreetLamp" type="StaticBody3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_inun6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 0.95)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.8, 0, 0, 0, 0.6, 0, 2.4, 0)
+shape = SubResource("CapsuleShape3D_siqar")

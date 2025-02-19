@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgsrwvxdx1gjp"]
+
+[ext_resource type="Script" path="res://player_3d.gd" id="1_8we8s"]
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://Assets/Models/player/sophia_skin/sophia_skin.tscn" id="1_c6tm3"]
+[ext_resource type="Script" path="res://Assets/Models/player/sophia_skin/sophia_skin.gd" id="3_7jdyd"]
+[ext_resource type="AudioStream" uid="uid://blm8rgih5k0t3" path="res://Assets/Music/player-sounds/jump.mp3" id="4_umsg8"]
+[ext_resource type="AudioStream" uid="uid://b0exrn8wfaxni" path="res://Assets/Music/player-sounds/step.mp3" id="5_q3wp3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aaooo"]
+radius = 0.314395
+height = 1.75309
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2m4yo"]
+
+[node name="Player3D" type="CharacterBody3D"]
+script = ExtResource("1_8we8s")
+
+[node name="SophiaSkin" parent="." instance=ExtResource("1_c6tm3")]
+unique_name_in_owner = true
+script = ExtResource("3_7jdyd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_aaooo")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.960216, -0.279259, 0, 0.279259, 0.960216, 0, 1.18703, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_mask = 5
+shape = SubResource("SphereShape3D_2m4yo")
+spring_length = 8.0
+margin = 0.001
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer3D" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("4_umsg8")
+
+[node name="Step" type="AudioStreamPlayer3D" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("5_q3wp3")

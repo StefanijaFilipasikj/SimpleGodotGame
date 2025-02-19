@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2it358y4wbck"]
+
+[ext_resource type="PackedScene" uid="uid://bg0oaqh7q6pb3" path="res://Assets/Models/gazebo.glb" id="1_2tbht"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m8ohv"]
+height = 3.42371
+radius = 0.525975
+
+[node name="Gazebo" type="StaticBody3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_2tbht")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.47594, 0, 0, 0, 0.888776, 0, 0, 0, 3.51829, 0, 1.51853, 0.0148726)
+shape = SubResource("CylinderShape3D_m8ohv")

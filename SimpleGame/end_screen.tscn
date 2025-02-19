@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://tsqtn3irjfju"]
+
+[ext_resource type="Script" path="res://end_screen.gd" id="1_4onp2"]
+[ext_resource type="Texture2D" uid="uid://c7k36tkn8o1hx" path="res://Assets/Images/end screen.png" id="2_m2l5j"]
+[ext_resource type="FontFile" uid="uid://hnbsq1k48gqp" path="res://Assets/Fonts/FrancoisOne-Regular.ttf" id="2_rycpm"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1158.0
+offset_bottom = 648.0
+script = ExtResource("1_4onp2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+texture = ExtResource("2_m2l5j")
+expand_mode = 1
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 152.0
+offset_right = 1153.0
+offset_bottom = 323.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_rycpm")
+theme_override_font_sizes/font_size = 120
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 328.0
+offset_right = 674.0
+offset_bottom = 394.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_rycpm")
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

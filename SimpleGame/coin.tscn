@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://g7opah6kvy1p"]
+
+[ext_resource type="Script" path="res://coin.gd" id="1_wrwy2"]
+[ext_resource type="ArrayMesh" uid="uid://nt57tg53jxyu" path="res://Assets/Models/coin_new.res" id="2_4pqin"]
+[ext_resource type="AudioStream" uid="uid://bqw50j5ascyyl" path="res://Assets/Music/coin.mp3" id="3_nq4ux"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jmsux"]
+height = 0.5
+
+[sub_resource type="Animation" id="Animation_axnpe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.615174, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_776y1"]
+resource_name = "bounce"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.615174, 0), Vector3(0, 0.384826, 0), Vector3(0, 0.05, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6d7ax"]
+_data = {
+"RESET": SubResource("Animation_axnpe"),
+"bounce": SubResource("Animation_776y1")
+}
+
+[node name="Coin" type="Area3D"]
+collision_layer = 4
+script = ExtResource("1_wrwy2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.615174, 0)
+mesh = ExtResource("2_4pqin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_jmsux")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6d7ax")
+}
+
+[node name="CoinPickup" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_nq4ux")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_bounce_animation_finished"]

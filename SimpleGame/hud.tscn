@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://6t360cmvuk8y"]
+
+[ext_resource type="Texture2D" uid="uid://dqdm7kmsv05o6" path="res://Assets/Images/hud_coin.png" id="1_ununu"]
+[ext_resource type="Script" path="res://hud.gd" id="1_vsyxh"]
+[ext_resource type="FontFile" uid="uid://hnbsq1k48gqp" path="res://Assets/Fonts/FrancoisOne-Regular.ttf" id="2_27vy1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti52p"]
+bg_color = Color(0, 0, 0, 0.415686)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_vsyxh")
+
+[node name="PointsPanel" type="Panel" parent="."]
+offset_left = 21.0
+offset_top = 20.0
+offset_right = 172.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ti52p")
+
+[node name="TimerPanel" type="Panel" parent="."]
+offset_left = 891.0
+offset_top = 21.0
+offset_right = 1131.0
+offset_bottom = 71.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ti52p")
+
+[node name="CoinPicture" type="TextureRect" parent="."]
+offset_left = 26.0
+offset_top = 22.0
+offset_right = 77.0
+offset_bottom = 68.0
+texture = ExtResource("1_ununu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 77.0
+offset_top = 21.0
+offset_right = 101.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0.803922, 0.12549, 1)
+theme_override_colors/font_shadow_color = Color(0.905882, 0.501961, 0.0392157, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_27vy1")
+theme_override_font_sizes/font_size = 30
+text = "x"
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 99.0
+offset_top = 16.0
+offset_right = 123.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 0.803922, 0.12549, 1)
+theme_override_colors/font_shadow_color = Color(0.905882, 0.501961, 0.0392157, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_27vy1")
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 904.0
+offset_top = 23.0
+offset_right = 1121.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.489622, 0.489622, 0.489622, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_27vy1")
+theme_override_font_sizes/font_size = 32
+text = "Time Left: 00:00"

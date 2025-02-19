@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b87ukwry72qhp"]
+
+[ext_resource type="PackedScene" uid="uid://cwe0l73st7erh" path="res://Assets/Models/low_poly_stylized_clover_grass.glb" id="1_yf81g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y5w8q"]
+
+[node name="PinkFlower" type="StaticBody3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_yf81g")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1.1, 0, 0.2, 0)
+shape = SubResource("BoxShape3D_y5w8q")
